@@ -13,6 +13,7 @@ package org.usfirst.frc571.emmet.commands;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc571.emmet.subsystems.DriveTrain;
 import org.usfirst.frc571.emmet.Robot;
@@ -51,7 +52,22 @@ public class ArcadeDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	driveTrain.arcadeDrive(-driveStick.getY(), driveStick.getZ()*(-driveStick.getThrottle()+1)*0.5); // (speed, rotation)
+    	if (!SmartDashboard.containsKey("SpeedNanny")) {
+    		SmartDashboard.putNumber("SpeedNanny", 0.7);
+    	}
+    	if (!SmartDashboard.containsKey("TurnNanny")) {
+    		SmartDashboard.putNumber("TurnNanny", .3);
+    	}
+    	double speedNanny = SmartDashboard.getNumber("SpeedNanny", 0.70);
+    	double turnNanny  = SmartDashboard.getNumber("TurnNanny", .30);
+    	driveTrain.arcadeDrive(-driveStick.getY()*speedNanny, (-driveStick.getThrottle()+1)*turnNanny*driveStick.getZ()); // (speed, rotation)
+
+//    	if(driveStick.getTrigger()) {
+//        	driveTrain.arcadeDrive(0.4*(-driveStick.getY()), 0.55*((driveStick.getZ()))); // (speed, rotation)
+//    	}
+//    	else {
+//        	driveTrain.arcadeDrive(-driveStick.getY(), driveStick.getZ()*(-driveStick.getThrottle()+1)*0.5); // (speed, rotation)
+//    	}
 //    	driveTrain.arcadeDrive(-opStick.getY(Hand.kLeft), opStick.getX(Hand.kRight));
 
 //    	driveTrain.drive(leftStick.getY(), rightStick.getY());

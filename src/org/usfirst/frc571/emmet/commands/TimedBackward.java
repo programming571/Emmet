@@ -48,7 +48,7 @@ public class TimedBackward extends TimedCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.driveTrain.arcadeDrive(-0.7, 0); // 0.7, -0.09
+    	Robot.driveTrain.arcadeDrive(-0.7, 0);
     }
 
 

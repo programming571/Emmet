@@ -55,8 +55,8 @@ public class Position3Auto extends InstantCommand {
 
     	if (Robot.gameData.charAt(1) == 'R') {
     		new TargetScale(3).start();
-    	} else if (Robot.gameData.charAt(0) == 'R') {
-    		new TargetSwitch(3).start();
+//    	} else if (Robot.gameData.charAt(0) == 'R') {
+//    		new TargetSwitch(3).start();
     	} else {
 //    		System.out.println("no right target available...");
 //    		new TargetNothing(2).start();

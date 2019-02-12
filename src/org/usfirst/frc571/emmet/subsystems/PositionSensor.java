@@ -15,6 +15,7 @@ package org.usfirst.frc571.emmet.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,11 +40,13 @@ public class PositionSensor extends Subsystem {
 			 * 
 			 * Multiple navX-model devices on a single robot are supported.
 			 ************************************************************************/
-			ahrs = new AHRS(SerialPort.Port.kUSB);
+//			ahrs = new AHRS(SerialPort.Port.kUSB);
+			ahrs = new AHRS(SPI.Port.kMXP);
 			// ahrs = new AHRS(SerialPort.Port.kMXP, SerialDataType.kProcessedData,
 			// (byte)50);
 			ahrs.enableLogging(true);
 			ahrs.zeroYaw();
+			System.out.println("zero");
 
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
@@ -53,6 +56,8 @@ public class PositionSensor extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// no default
+//		System.out.println("init default command");
+//		ahrs.zeroYaw();
 	}
 
 	@Override
@@ -73,6 +78,11 @@ public class PositionSensor extends Subsystem {
 	
 	public AHRS getAHRS() {
 		return ahrs;
+	}
+	
+	public void zeroIt() {
+		ahrs.zeroYaw();
+		System.out.println("zero");
 	}
 
 }
