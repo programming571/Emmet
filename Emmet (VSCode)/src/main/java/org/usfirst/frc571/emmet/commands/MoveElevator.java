@@ -56,7 +56,7 @@ public class MoveElevator extends Command {
 		} else if (driveStick.getRawButton(4)) {
 			Robot.elevator.move(-0.6);
 		}
-		/********* DUAL STICK OPERATION */
+		/******* DUAL STICK OPERATION *******/
 		//Robot.elevator.move(-opStick.getRawAxis(1));
 	}
 
