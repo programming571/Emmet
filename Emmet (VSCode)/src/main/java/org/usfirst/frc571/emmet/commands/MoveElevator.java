@@ -52,9 +52,11 @@ public class MoveElevator extends Command {
 	protected void execute() {
 		/***** SINGLE STICK OPERATION *******/
 		if(driveStick.getRawButton(3)) {
-
+			Robot.elevator.move(0.6);
 		} else if (driveStick.getRawButton(4)) {
 			Robot.elevator.move(-0.6);
+		} else {
+			// Robot.elevator.move(0.0);
 		}
 		/******* DUAL STICK OPERATION *******/
 		//Robot.elevator.move(-opStick.getRawAxis(1));
